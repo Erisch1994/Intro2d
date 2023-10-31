@@ -19,8 +19,35 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        if (Input.GetKey(KeyCode.A))
+        {
+            horizontal = -1;    
+        }
+        
+        else if (Input.GetKey(KeyCode.D))
+        {
+            horizontal = 1;
+        }
+
+        else
+        {
+            horizontal = 0;
+        }
+        
+        if (Input.GetKey(KeyCode.S))
+        {
+            vertical = -1;
+        }
+
+        else if (Input.GetKey(KeyCode.W))
+        {
+            vertical = 1;
+        }
+
+        else
+        {
+            vertical = 0;
+        }
     }
     
     // Fixed Update is called 50 times a second
