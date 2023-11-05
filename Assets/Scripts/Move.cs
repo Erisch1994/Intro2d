@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Move : MonoBehaviour
 {
@@ -19,11 +20,12 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKey(KeyCode.A))
         {
-            horizontal = -1;    
+            horizontal = -1;
         }
-        
+
         else if (Input.GetKey(KeyCode.D))
         {
             horizontal = 1;
@@ -33,7 +35,7 @@ public class Move : MonoBehaviour
         {
             horizontal = 0;
         }
-        
+
         if (Input.GetKey(KeyCode.S))
         {
             vertical = -1;
@@ -49,10 +51,43 @@ public class Move : MonoBehaviour
             vertical = 0;
         }
     }
-    
+
     // Fixed Update is called 50 times a second
     private void FixedUpdate()
     {
-        body.velocity = new Vector2 (horizontal * speed, vertical * speed);
+        body.velocity = new Vector2(horizontal * speed, vertical * speed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Key")
+        {
+            Destroy(collision.gameObject);
+
+            GameObject door = GameObject.FindGameObjectWithTag("Door");
+
+            if (door != null)
+            {
+                Destroy(door);
+            }
+
+            else
+            {
+                door = GameObject.Find("Door");
+                if (door != null)
+                {
+                    Destroy(door);
+                }
+                else
+                {
+                    Debug.LogError("Door object not found!");
+                }
+            }
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

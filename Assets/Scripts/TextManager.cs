@@ -7,23 +7,31 @@ public class TextManager : MonoBehaviour
 {
     public TMP_Text scoreText;
 
-    private int coins;
+    public int coins;
 
-    // Start is called before the first frame update
+    public GameObject doorTwo;
+
+
     void Start()
     {
-        
+        doorTwo = GameObject.Find("DoorTwo");
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         scoreText.text = coins.ToString();
         
+        if (coins >= 14 && doorTwo != null)
+        {
+            Destroy(doorTwo);
+        }
+
     }
 
     public void AddCoins()
     {
         coins++;
     }
+
 }
