@@ -17,7 +17,6 @@ public class CoinCollector : MonoBehaviour
         {
             textManager.AddCoins();
 
-            Destroy(gameObject);
         }
     }
 }

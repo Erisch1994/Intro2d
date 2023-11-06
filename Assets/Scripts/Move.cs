@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Move : MonoBehaviour
 {
     public float speed = 10f;
-
     Rigidbody2D body;
     public float horizontal;
     public float vertical;
@@ -60,34 +59,11 @@ public class Move : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Key")
-        {
-            Destroy(collision.gameObject);
 
-            GameObject door = GameObject.FindGameObjectWithTag("Door");
-
-            if (door != null)
-            {
-                Destroy(door);
-            }
-
-            else
-            {
-                door = GameObject.Find("Door");
-                if (door != null)
-                {
-                    Destroy(door);
-                }
-                else
-                {
-                    Debug.LogError("Door object not found!");
-                }
-            }
-        }
-
-        if (collision.gameObject.tag == "Enemy")
+    if (collision.gameObject.tag == "Enemy")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-}
+
+}   
